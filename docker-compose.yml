@@ -1,0 +1,23 @@
+version: '3.6'
+
+services:
+  postgres12:
+    image: postgres:12-alpine
+    container_name: postgres12
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=secret
+    volumes: 
+      - db:/var/lib/postgresql/data
+    networks:
+      - golang
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  golang:
+    driver: bridge
